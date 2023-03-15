@@ -1,0 +1,37 @@
+package config
+
+import (
+	"fmt"
+
+	"github.com/joho/godotenv"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+)
+
+var DB *gorm.DB
+
+func InitDB() {
+	var appConfig map[string]string
+	appConfig, err := godotenv.Read()
+	if err != nil {
+		fmt.Println("Error reading .env file")
+	}
+
+	mysqlCredentials := fmt.Sprintf(
+		"%s:%s@%s(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local",
+		appConfig["MYSQL_USER"],
+		appConfig["MYSQL_PASSWORD"],
+		appConfig["MYSQL_PROTOCOL"],
+		appConfig["MYSQL_HOST"],
+		appConfig["MYSQL_PORT"],
+		appConfig["MYSQL_DBNAME"],
+	)
+
+	DB, err = gorm.Open(mysql.Open(mysqlCredentials), &gorm.Config{})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Connect")
+}
