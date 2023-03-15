@@ -43,4 +43,6 @@ func InitMigrate() {
 	DB.AutoMigrate(&models.Persons{})
 	DB.AutoMigrate(&models.TipeLapangans{})
 	DB.AutoMigrate(&models.Lapangans{})
+	DB.AutoMigrate(&models.Bookings{})
+	DB.AutoMigrate(&models.Ratings{})
 }
