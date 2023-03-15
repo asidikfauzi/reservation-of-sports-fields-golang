@@ -1,6 +1,7 @@
 package config
 
 import (
+	"asidikfauzi/reservation-of-sport-fields-golang/models"
 	"fmt"
 
 	"github.com/joho/godotenv"
@@ -33,5 +34,10 @@ func InitDB() {
 		panic(err)
 	}
 
-	fmt.Println("Connect")
+	InitMigrate()
+}
+
+func InitMigrate() {
+	DB.AutoMigrate(&models.Users{})
+	DB.AutoMigrate(&models.Pesans{})
 }
