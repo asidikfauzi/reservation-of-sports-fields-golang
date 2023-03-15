@@ -3,6 +3,7 @@ package models
 import "time"
 
 type Pesans struct {
+	ID        string    `gorm:"primarykey;type:char(36);" json:"id"`
 	From_user string    `gorm:"type:char(36);not null" json:"from_user"`
 	To_user   string    `gorm:"type:char(36);not null" json:"to_user"`
 	IsiPesan  string    `gorm:"type:varchar(255);not null" json:"isi_pesan"`
