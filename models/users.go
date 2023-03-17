@@ -35,7 +35,7 @@ type Users_update struct {
 	Password string `json:"password" binding:"required"`
 }
 
-type Users_response struct {
+type Customers_response struct {
 	Code    string
 	Message string
 	Status  string

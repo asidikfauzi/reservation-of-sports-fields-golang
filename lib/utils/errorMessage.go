@@ -17,6 +17,9 @@ func GetErrorMessageEmpty(fe validator.FieldError) string {
 		return "Should be greater than " + fe.Param()
 	case "oneof":
 		return "these fields should be user and admin"
+	case "email":
+		return "format email not valid"
+
 	}
 
 	return "Unknown error"
