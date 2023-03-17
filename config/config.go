@@ -51,6 +51,7 @@ func InitDB() {
 }
 
 func InitMigrate() {
+	DB.AutoMigrate(&models.Roles{})
 	DB.AutoMigrate(&models.Users{})
 	DB.AutoMigrate(&models.Pesans{})
 	DB.AutoMigrate(&models.Persons{})
@@ -62,19 +63,26 @@ func InitMigrate() {
 
 func InitSeed() error {
 
+	roles := []models.Roles{
+		{ID: 1, Name: "admin"},
+		{ID: 2, Name: "owner"},
+		{ID: 3, Name: "user"},
+	}
+
 	uuid := uuid.New().String()
 	hashPassword, _ := HashPassword("12345678")
 
-	user := models.Users{
+	users := models.Users{
 		ID:       uuid,
 		Username: "admin",
 		Email:    "admin@gmail.com",
 		Password: hashPassword,
-		Role:     "admin",
+		Role_id:  1,
 		IsActive: true,
 	}
 
-	DB.Create(user)
+	DB.Create(roles)
+	DB.Create(users)
 
 	return nil
 }
