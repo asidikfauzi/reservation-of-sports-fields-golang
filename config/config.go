@@ -5,22 +5,11 @@ import (
 	"asidikfauzi/reservation-of-sport-fields-golang/models"
 	"fmt"
 	"github.com/joho/godotenv"
-	"golang.org/x/crypto/bcrypt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
-
-func HashPassword(password string) (string, error) {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 10)
-	return string(bytes), err
-}
-
-func CheckPasswordHash(password, hash string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
-	return err == nil
-}
 
 func InitDB() {
 	var appConfig map[string]string
@@ -68,7 +57,7 @@ func InitSeed() error {
 		{ID: 3, Name: "user"},
 	}
 
-	hashPassword, _ := HashPassword("12345678")
+	hashPassword, _ := helpers.HashPassword("12345678")
 
 	users := models.Users{
 		ID:       helpers.Uuid(),
