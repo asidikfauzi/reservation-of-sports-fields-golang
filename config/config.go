@@ -57,7 +57,7 @@ func InitSeed() error {
 		{ID: 3, Name: "user"},
 	}
 
-	hashPassword, _ := helpers.HashPassword("12345678")
+	hashPassword, _ := helpers.HashPassword("Password123")
 
 	users := models.Users{
 		ID:       helpers.Uuid(),
