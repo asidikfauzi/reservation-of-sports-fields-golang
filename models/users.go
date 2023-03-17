@@ -14,3 +14,29 @@ type Users struct {
 	DeleteAt  *time.Time `gorm:"default:null"`
 	Role      Roles      `gorm:"foreignKey:ID;references:Role_id"`
 }
+
+type Users_register struct {
+	Username string `json:"username" validate:"required"`
+	Email    string `json:"email" validate:"required,email"`
+	Password string `json:"password" validate:"required"`
+	Role_id  int    `json:"role_id" validate:"required"`
+}
+
+type Users_login struct {
+	ID      int    `gorm:"primarykey;" json:"id"`
+	Email   string `json:"email" validate:"required,email"`
+	Role_id int    `json:"role_id" validate:"required"`
+	Token   string `json:"token"`
+}
+
+type Customers_update struct {
+	Username string `json:"username"`
+	Email    string `json:"email" validate:"required,email"`
+	Password string `json:"password" validate:"required"`
+}
+
+type Customers_response struct {
+	Code    string
+	Message string
+	Status  string
+}

@@ -7,6 +7,5 @@ import (
 
 func main() {
 	config.InitDB()
-
 	routes.Start()
 }

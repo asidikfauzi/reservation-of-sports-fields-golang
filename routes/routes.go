@@ -1,8 +1,7 @@
 package routes
 
 import (
-	"net/http"
-
+	"asidikfauzi/reservation-of-sport-fields-golang/controllers"
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,11 +10,7 @@ func Start() {
 	r := gin.Default()
 
 	// Define a route for the GET method
-	r.GET("/hello", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "Hello, World!",
-		})
-	})
+	r.POST("/register", controllers.RegisterController)
 
 	// Start the server on port 8080
 	r.Run(":8080")
