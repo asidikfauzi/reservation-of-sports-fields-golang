@@ -7,9 +7,10 @@ type Users struct {
 	Username  string     `gorm:"type:varchar(255);unique;not null" json:"username"`
 	Email     string     `gorm:"type:varchar(100);unique;not null" json:"email"`
 	Password  string     `gorm:"type:varchar(255);not null" json:"password"`
-	Role      string     `gorm:"type:varchar(10);not null" json:"role"`
+	Role_id   int        `gorm:"not null" json:"role_id"`
 	IsActive  bool       `gorm:"default:true"`
 	CreatedAt time.Time  `gorm:"default:null"`
 	UpdatedAt time.Time  `gorm:"default:null"`
 	DeleteAt  *time.Time `gorm:"default:null"`
+	Role      Roles      `gorm:"foreignKey:ID;references:Role_id"`
 }
