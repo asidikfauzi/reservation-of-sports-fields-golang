@@ -1,7 +1,7 @@
 package config
 
 import (
-	"asidikfauzi/reservation-of-sport-fields-golang/helpers"
+	"asidikfauzi/reservation-of-sport-fields-golang/lib/utils"
 	"asidikfauzi/reservation-of-sport-fields-golang/models"
 	"fmt"
 	"github.com/joho/godotenv"
@@ -34,8 +34,8 @@ func InitDB() {
 		panic(err)
 	}
 
-	InitMigrate()
-	InitSeed()
+	//InitMigrate()
+	//InitSeed()
 }
 
 func InitMigrate() {
@@ -57,10 +57,10 @@ func InitSeed() error {
 		{ID: 3, Name: "user"},
 	}
 
-	hashPassword, _ := helpers.HashPassword("Password123")
+	hashPassword, _ := utils.HashPassword("Password123")
 
 	users := models.Users{
-		ID:       helpers.Uuid(),
+		ID:       utils.Uuid(),
 		Username: "admin",
 		Email:    "admin@gmail.com",
 		Password: hashPassword,
