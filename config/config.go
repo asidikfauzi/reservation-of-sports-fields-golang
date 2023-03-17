@@ -1,10 +1,9 @@
 package config
 
 import (
+	"asidikfauzi/reservation-of-sport-fields-golang/helpers"
 	"asidikfauzi/reservation-of-sport-fields-golang/models"
 	"fmt"
-
-	"github.com/google/uuid"
 	"github.com/joho/godotenv"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/driver/mysql"
@@ -69,11 +68,10 @@ func InitSeed() error {
 		{ID: 3, Name: "user"},
 	}
 
-	uuid := uuid.New().String()
 	hashPassword, _ := HashPassword("12345678")
 
 	users := models.Users{
-		ID:       uuid,
+		ID:       helpers.Uuid(),
 		Username: "admin",
 		Email:    "admin@gmail.com",
 		Password: hashPassword,
