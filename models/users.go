@@ -16,26 +16,26 @@ type Users struct {
 }
 
 type Users_register struct {
-	Username string `json:"username" validate:"required"`
-	Email    string `json:"email" validate:"required,email"`
-	Password string `json:"password" validate:"required"`
-	Role_id  int    `json:"role_id" validate:"required"`
+	Username string `json:"username" binding:"required"`
+	Email    string `json:"email" binding:"required"`
+	Password string `json:"password" binding:"required"`
+	Role_id  int    `json:"role_id" binding:"required"`
 }
 
 type Users_login struct {
 	ID      int    `gorm:"primarykey;" json:"id"`
-	Email   string `json:"email" validate:"required,email"`
-	Role_id int    `json:"role_id" validate:"required"`
+	Email   string `json:"email" binding:"required,email"`
+	Role_id int    `json:"role_id" binding:"required"`
 	Token   string `json:"token"`
 }
 
-type Customers_update struct {
+type Users_update struct {
 	Username string `json:"username"`
-	Email    string `json:"email" validate:"required,email"`
-	Password string `json:"password" validate:"required"`
+	Email    string `json:"email" binding:"required,email"`
+	Password string `json:"password" binding:"required"`
 }
 
-type Customers_response struct {
+type Users_response struct {
 	Code    string
 	Message string
 	Status  string
